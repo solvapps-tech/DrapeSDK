@@ -88,15 +88,15 @@ public class DrapeViewController: UIViewController {
     }
     
     @IBAction func categoryTapped(_ sender: Any) {
-        let upperBodyAction = UIAlertAction(title: DrapeCategory.upperBody.rawValue, style: .default) { _ in
+        let upperBodyAction = UIAlertAction(title: DrapeCategory.upperBody.visibleName, style: .default) { _ in
             self.selectedCategory = .upperBody
             self.buttonCategory.setTitle(DrapeCategory.upperBody.visibleName, for: .normal)
         }
-        let lowerBodyAction = UIAlertAction(title: DrapeCategory.lowerBody.rawValue, style: .default) { _ in
+        let lowerBodyAction = UIAlertAction(title: DrapeCategory.lowerBody.visibleName, style: .default) { _ in
             self.selectedCategory = .lowerBody
             self.buttonCategory.setTitle(DrapeCategory.lowerBody.visibleName, for: .normal)
         }
-        let dressAction = UIAlertAction(title: DrapeCategory.dresses.rawValue, style: .default) { _ in
+        let dressAction = UIAlertAction(title: DrapeCategory.dresses.visibleName, style: .default) { _ in
             self.selectedCategory = .dresses
             self.buttonCategory.setTitle(DrapeCategory.dresses.visibleName, for: .normal)
         }

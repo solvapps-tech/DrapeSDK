@@ -8,7 +8,7 @@
 import UIKit
 import PhotosUI
 
-class DrapeViewController: UIViewController {
+public class DrapeViewController: UIViewController {
     
     @IBOutlet weak var viewProductContainer: UIView!
     @IBOutlet weak var viewOriginalContainer: UIView!
@@ -24,10 +24,18 @@ class DrapeViewController: UIViewController {
     @IBOutlet weak var buttonCategory: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    var productImageUrl: String?
+    public var productImageUrl: String?
     var selectedCategory: DrapeCategory = .upperBody
-
-    override func viewDidLoad() {
+    
+    public init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    public override func viewDidLoad() {
         super.viewDidLoad()
         setViewProperties()
         loadProductImage()
@@ -174,7 +182,7 @@ class DrapeViewController: UIViewController {
 }
 
 extension DrapeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage {
             originalImageView.image = image
         }

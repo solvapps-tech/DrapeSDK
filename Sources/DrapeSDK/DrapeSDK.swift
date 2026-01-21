@@ -7,6 +7,14 @@ public enum DrapeCategory: String, Sendable {
     case upperBody = "upper_body"
     case lowerBody = "lower_body"
     case dresses = "dresses"
+    
+    var visibleName: String {
+        switch self {
+        case .upperBody: return "Üst Giyim"
+        case .lowerBody: return "Alt Giyim"
+        case .dresses: return "Elbise veya Takım"
+        }
+    }
 }
 
 public struct DrapeResult: Decodable, Sendable {

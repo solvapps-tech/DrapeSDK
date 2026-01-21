@@ -59,7 +59,7 @@ public class DrapeViewController: UIViewController {
         self.originalImageView.layer.cornerRadius = 20
         self.resultImageView.layer.cornerRadius = 20
         
-        self.buttonCategory.setTitle(self.selectedCategory.rawValue, for: .normal)
+        self.buttonCategory.setTitle(self.selectedCategory.visibleName, for: .normal)
     }
     
     @IBAction func selectImageTapped(_ sender: Any) {
@@ -90,15 +90,15 @@ public class DrapeViewController: UIViewController {
     @IBAction func categoryTapped(_ sender: Any) {
         let upperBodyAction = UIAlertAction(title: DrapeCategory.upperBody.rawValue, style: .default) { _ in
             self.selectedCategory = .upperBody
-            self.buttonCategory.setTitle(DrapeCategory.upperBody.rawValue, for: .normal)
+            self.buttonCategory.setTitle(DrapeCategory.upperBody.visibleName, for: .normal)
         }
         let lowerBodyAction = UIAlertAction(title: DrapeCategory.lowerBody.rawValue, style: .default) { _ in
             self.selectedCategory = .lowerBody
-            self.buttonCategory.setTitle(DrapeCategory.lowerBody.rawValue, for: .normal)
+            self.buttonCategory.setTitle(DrapeCategory.lowerBody.visibleName, for: .normal)
         }
         let dressAction = UIAlertAction(title: DrapeCategory.dresses.rawValue, style: .default) { _ in
             self.selectedCategory = .dresses
-            self.buttonCategory.setTitle(DrapeCategory.dresses.rawValue, for: .normal)
+            self.buttonCategory.setTitle(DrapeCategory.dresses.visibleName, for: .normal)
         }
         
         let alertController = UIAlertController(title: "Kategori Seç",

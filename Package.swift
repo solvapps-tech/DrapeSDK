@@ -23,6 +23,9 @@ let package = Package(
         // 4. Hedefler
         .target(
             name: "DrapeSDK",
-            dependencies: [])
+            dependencies: [],
+            resources: [
+                .process("Resources")
+            ])
     ]
 )

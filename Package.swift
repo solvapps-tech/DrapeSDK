@@ -25,7 +25,8 @@ let package = Package(
             name: "DrapeSDK",
             dependencies: [],
             resources: [
-                .process("DrapeViewController.xib")
+                .process("DrapeViewController.xib"),
+                .process("DrapeResultViewController.xib")
             ])
     ]
 )

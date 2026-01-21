@@ -8,13 +8,21 @@
 import UIKit
 import PhotosUI
 
-class DrapeResultViewController: UIViewController {
+public class DrapeResultViewController: UIViewController {
     
     @IBOutlet weak var imageResult: UIImageView!
     
-    var resultImage: UIImage?
+    public var resultImage: UIImage?
     
-    override func viewDidLoad() {
+    public init() {
+        super.init(nibName: "DrapeResultViewController", bundle: Bundle.module)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    public override func viewDidLoad() {
         super.viewDidLoad()
         self.imageResult.image = resultImage
         self.imageResult.layer.cornerRadius = 20

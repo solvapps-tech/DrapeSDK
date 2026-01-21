@@ -28,8 +28,7 @@ public class DrapeViewController: UIViewController {
     var selectedCategory: DrapeCategory = .upperBody
     
     public init() {
-        let frameworkBundle = Bundle(for: DrapeViewController.self)
-        super.init(nibName: "DrapeViewController", bundle: frameworkBundle)
+        super.init(nibName: "DrapeViewController", bundle: Bundle.module)
     }
     
     required init?(coder: NSCoder) {

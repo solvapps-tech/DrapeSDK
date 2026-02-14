@@ -12,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DrapeResultViewController" customModule="DrapeDemo" customModuleProvider="target">
             <connections>
+                <outlet property="buttonSave" destination="Ox7-5J-Sbk" id="XZ7-Q4-F77"/>
+                <outlet property="buttonShare" destination="pfb-Lr-cmc" id="rwC-jG-LhP"/>
                 <outlet property="imageResult" destination="nt3-lH-eP6" id="t1b-91-dWR"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -38,7 +40,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ox7-5J-Sbk">
                     <rect key="frame" x="20" y="769" width="166.66666666666666" height="35"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="tinted" title="Kaydet">
+                    <buttonConfiguration key="configuration" style="filled" title="Kaydet" imagePadding="5">
                         <imageReference key="image" image="square.and.arrow.down.fill" catalog="system" symbolScale="small"/>
                     </buttonConfiguration>
                     <connections>
@@ -48,7 +50,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pfb-Lr-cmc">
                     <rect key="frame" x="206.66666666666663" y="769" width="166.33333333333337" height="35"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="tinted" title="Paylaş">
+                    <buttonConfiguration key="configuration" style="filled" title="Paylaş" imagePadding="5">
                         <imageReference key="image" image="square.and.arrow.up.circle.fill" catalog="system" symbolScale="medium"/>
                     </buttonConfiguration>
                     <connections>

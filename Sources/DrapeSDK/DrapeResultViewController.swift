@@ -11,6 +11,8 @@ import PhotosUI
 public class DrapeResultViewController: UIViewController {
     
     @IBOutlet weak var imageResult: UIImageView!
+    @IBOutlet weak var buttonSave: UIButton!
+    @IBOutlet weak var buttonShare: UIButton!
     
     public var resultImage: UIImage?
     
@@ -26,6 +28,8 @@ public class DrapeResultViewController: UIViewController {
         super.viewDidLoad()
         self.imageResult.image = resultImage
         self.imageResult.layer.cornerRadius = 20
+        self.buttonSave.setTitle(DrapeLanguageManager.getText(for: .save), for: .normal)
+        self.buttonShare.setTitle(DrapeLanguageManager.getText(for: .share), for: .normal)
     }
     
     @IBAction func closeTapped() {

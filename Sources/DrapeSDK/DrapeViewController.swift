@@ -38,6 +38,7 @@ public class DrapeViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         setViewProperties()
+        setTextValues()
         loadProductImage()
     }
     
@@ -58,7 +59,14 @@ public class DrapeViewController: UIViewController {
         self.productImageView.layer.cornerRadius = 20
         self.originalImageView.layer.cornerRadius = 20
         self.resultImageView.layer.cornerRadius = 20
-        
+    }
+    
+    func setTextValues() {
+        self.labelProduct.text = DrapeLanguageManager.getText(for: .chosenProduct)
+        self.labelOriginal.text = DrapeLanguageManager.getText(for: .yourPhoto)
+        self.labelCategory.text = DrapeLanguageManager.getText(for: .productCategory)
+        self.labelResult.text = DrapeLanguageManager.getText(for: .resultSeenHere)
+        self.runButton.setTitle(DrapeLanguageManager.getText(for: .tryNow), for: .normal)
         self.buttonCategory.setTitle(self.selectedCategory.visibleName, for: .normal)
     }
     

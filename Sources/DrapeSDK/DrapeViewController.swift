@@ -1,6 +1,6 @@
 //
 //  DrapeViewController.swift
-//  DrapeDemo
+//  DrapeSDK
 //
 //  Created by Mehmet Kılınçkaya on 15.01.2026.
 //
@@ -63,22 +63,22 @@ public class DrapeViewController: UIViewController {
     }
     
     @IBAction func selectImageTapped(_ sender: Any) {
-        let saveImage = UIAlertAction(title: "🖼️ Fotoğraflardan Seç", style: .default) { _ in
+        let saveImage = UIAlertAction(title: DrapeLanguageManager.getText(for: .choseFromGalery), style: .default) { _ in
             let picker = UIImagePickerController()
             picker.delegate = self
             picker.sourceType = .photoLibrary
             self.present(picker, animated: true)
         }
-        let openFullImage = UIAlertAction(title: "📷 Kamerayı Aç", style: .default) { _ in
+        let openFullImage = UIAlertAction(title: DrapeLanguageManager.getText(for: .openCamera), style: .default) { _ in
             let picker = UIImagePickerController()
             picker.delegate = self
             picker.sourceType = .camera
             self.present(picker, animated: true)
         }
-        let cancelAction = UIAlertAction(title: "Vazgeç", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: DrapeLanguageManager.getText(for: .cancel), style: .cancel, handler: nil)
         
-        let alertController = UIAlertController(title: "Seçenekler.",
-                                                message: "Fotoğraf eklemek için;",
+        let alertController = UIAlertController(title: DrapeLanguageManager.getText(for: .options),
+                                                message: DrapeLanguageManager.getText(for: .toAddPhoto),
                                                 preferredStyle: .actionSheet)
         alertController.addAction(saveImage)
         alertController.addAction(openFullImage)
@@ -101,8 +101,8 @@ public class DrapeViewController: UIViewController {
             self.buttonCategory.setTitle(DrapeCategory.dresses.visibleName, for: .normal)
         }
         
-        let alertController = UIAlertController(title: "Kategori Seç",
-                                                message: "Drape'in daha iyi sonuçlar üretmesi için seçili ürünün kategorisini seçiniz.",
+        let alertController = UIAlertController(title: DrapeLanguageManager.getText(for: .choseCategory),
+                                                message: DrapeLanguageManager.getText(for: .categorySelectText),
                                                 preferredStyle: .actionSheet)
         alertController.addAction(upperBodyAction)
         alertController.addAction(lowerBodyAction)
@@ -115,11 +115,11 @@ public class DrapeViewController: UIViewController {
         resultImageView.image = nil
         labelResult.isHidden = false
         guard let productImage = productImageUrl else {
-            self.showError("❌ Önce bir ürün fotoğraf seçmelisin.")
+            self.showError(DrapeLanguageManager.getText(for: .choseProductPhoto))
             return
         }
         guard let humanImage = originalImageView.image else {
-            self.showError("❌ Önce bir fotoğraf seçmelisin.")
+            self.showError(DrapeLanguageManager.getText(for: .chosePhoto))
             return
         }
         
@@ -127,24 +127,22 @@ public class DrapeViewController: UIViewController {
         
         Task {
             do {
-                debugPrint("🚀 Drape Başlatılıyor...")
+                debugPrint("🚀 Drape starting...")
                 
                 let result = try await Drape.shared.tryOn(
                     humanImage: humanImage,
                     productUrl: productImage,
-                    description: self.selectedCategory.rawValue,
                     category: self.selectedCategory
                 )
                 
-                debugPrint("✅ Başarılı! Session ID: \(result.sessionId)")
-                debugPrint("🖼️ Görsel URL: \(result.imageUrl)")
+                debugPrint("✅ Success! Session ID: \(result.sessionId)")
+                debugPrint("🖼️ Generated image url: \(result.imageUrl)")
                 
-                // Sonucu indirip gösterelim
                 labelResult.isHidden = true
                 await loadImage(from: result.imageUrl, forImageView: self.resultImageView)
                 
             } catch {
-                debugPrint("🛑 HATA: \(error.localizedDescription)")
+                debugPrint("🛑 ERROR: \(error.localizedDescription)")
                 debugPrint("🛑 RAW ERROR: \(error)")
                 showError(error.localizedDescription)
             }
@@ -174,8 +172,8 @@ public class DrapeViewController: UIViewController {
     }
     
     func showError(_ msg: String) {
-        let alert = UIAlertController(title: "Hata", message: msg, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Tamam", style: .default))
+        let alert = UIAlertController(title: DrapeLanguageManager.getText(for: .error), message: msg, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: DrapeLanguageManager.getText(for: .done), style: .default))
         present(alert, animated: true)
     }
 

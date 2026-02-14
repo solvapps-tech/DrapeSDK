@@ -1,6 +1,6 @@
 //
 //  DrapeResultViewController.swift
-//  DrapeDemo
+//  DrapeSDK
 //
 //  Created by Mehmet Kılınçkaya on 21.01.2026.
 //
@@ -48,11 +48,13 @@ public class DrapeResultViewController: UIViewController {
         } completionHandler: { success, error in
             DispatchQueue.main.async {
                 if success {
-                    let alert = UIAlertController(title: "Başarılı", message: "Fotoğraf galeriye kaydedildi", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Tamam", style: .default))
+                    let alert = UIAlertController(title: DrapeLanguageManager.getText(for: .success),
+                                                  message: DrapeLanguageManager.getText(for: .photoSaved),
+                                                  preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: DrapeLanguageManager.getText(for: .done), style: .default))
                     self.present(alert, animated: true)
                 } else {
-                    debugPrint("Hata:", error?.localizedDescription ?? "")
+                    debugPrint("Error:", error?.localizedDescription ?? "")
                 }
             }
         }

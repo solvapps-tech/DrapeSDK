@@ -1,7 +1,19 @@
+//
+//  Drape.swift
+//  DrapeSDK
+//
+//  Created by Mehmet Kılınçkaya on 15.01.2026.
+//
+
 import Foundation
 import UIKit
 
 // MARK: - Public Enums & Models
+
+public enum DrapeLanguage: String, Sendable {
+    case en = "en"
+    case tr = "tr"
+}
 
 public enum DrapeCategory: String, Sendable {
     case upperBody = "upper_body"
@@ -10,9 +22,9 @@ public enum DrapeCategory: String, Sendable {
     
     var visibleName: String {
         switch self {
-        case .upperBody: return "Üst Giyim"
-        case .lowerBody: return "Alt Giyim"
-        case .dresses: return "Elbise veya Takım"
+        case .upperBody: return DrapeLanguageManager.getText(for: .upperBodyText)
+        case .lowerBody: return DrapeLanguageManager.getText(for: .lowerBodyText)
+        case .dresses: return DrapeLanguageManager.getText(for: .dressesText)
         }
     }
 }
@@ -33,33 +45,27 @@ public enum DrapeError: Error {
     
     public var localizedDescription: String {
         switch self {
-        case .missingPlistKey: return "DrapeAPIKey 'Info.plist' dosyasında bulunamadı."
-        case .invalidApiKey: return "API Anahtarı geçersiz."
-        case .serverError(let msg): return "Sunucu Hatası: \(msg)"
-        default: return "Bilinmeyen hata."
+        case .missingPlistKey: return "DrapeAPIKey can not be found in 'Info.plist'."
+        case .invalidApiKey: return "API Key is invalid."
+        case .serverError(let msg): return "Server error: \(msg)"
+        default: return "Unknown error."
         }
     }
 }
 
 // MARK: - Drape Singleton
-
-// DÜZELTME 1: Availability Check (Derleyici hatasını çözer)
-// DÜZELTME 2: MainActor (Concurrency hatasını çözer)
-@available(iOS 15.0, *)
-@MainActor
 public final class Drape {
     
     public static let shared = Drape()
-    
+    public var selectedLanguage: DrapeLanguage?
     private var apiKey: String?
     private let plistKeyName = "DrapeAPIKey"
-    // URL'yi kendi proje ID'n ile değiştirmeyi unutma!
     private let baseUrl = "https://us-central1-drape-ff64f.cloudfunctions.net"
     
     private init() {
         self.apiKey = Bundle.main.object(forInfoDictionaryKey: plistKeyName) as? String
         if self.apiKey == nil {
-            print("⚠️ DrapeSDK: Info.plist içinde \(plistKeyName) bulunamadı.")
+            debugPrint("⚠️ DrapeSDK: \(plistKeyName) can not be found in info.plist.")
         }
     }
     
@@ -70,7 +76,6 @@ public final class Drape {
     public func tryOn(
         humanImage: UIImage,
         productUrl: String,
-        description: String = "clothing",
         category: DrapeCategory = .upperBody
     ) async throws -> DrapeResult {
         
@@ -82,14 +87,13 @@ public final class Drape {
             throw DrapeError.imageConversionFailed
         }
         
-        // Network işlemleri
         let uploadInfo = try await getUploadUrl(apiKey: currentKey)
         try await uploadImageToStorage(url: uploadInfo.uploadUrl, data: imageData, contentType: uploadInfo.requiredContentType)
         let result = try await startTryOnProcess(
             apiKey: currentKey,
             storagePath: uploadInfo.storagePath,
             productUrl: productUrl,
-            description: description,
+            description: category.rawValue,
             category: category
         )
         
@@ -98,9 +102,6 @@ public final class Drape {
 }
 
 // MARK: - Private Networking Helpers
-
-// Extension'a da available eklememiz gerekebilir, çünkü async kullanıyorlar.
-@available(iOS 15.0, *)
 private extension Drape {
     
     struct UploadUrlResponse: Decodable { let result: UploadUrlResult }
@@ -111,7 +112,7 @@ private extension Drape {
     }
     struct TryOnResponse: Decodable { let result: DrapeResult }
     
-    nonisolated func getUploadUrl(apiKey: String) async throws -> UploadUrlResult {
+    func getUploadUrl(apiKey: String) async throws -> UploadUrlResult {
         let url = URL(string: "\(baseUrl)/getUploadUrl")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -124,13 +125,13 @@ private extension Drape {
         let (data, response) = try await URLSession.shared.data(for: request)
         
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-            throw DrapeError.serverError("Upload URL başarısız.")
+            throw DrapeError.serverError("Upload URL fail.")
         }
         return try JSONDecoder().decode(UploadUrlResponse.self, from: data).result
     }
     
-    nonisolated func uploadImageToStorage(url: String, data: Data, contentType: String) async throws {
-        guard let uploadUrl = URL(string: url) else { throw DrapeError.networkError("URL Hatası") }
+    func uploadImageToStorage(url: String, data: Data, contentType: String) async throws {
+        guard let uploadUrl = URL(string: url) else { throw DrapeError.networkError("URL error") }
         var request = URLRequest(url: uploadUrl)
         request.httpMethod = "PUT"
         request.setValue(contentType, forHTTPHeaderField: "Content-Type")
@@ -138,11 +139,11 @@ private extension Drape {
         let (_, response) = try await URLSession.shared.upload(for: request, from: data)
         
         if let httpResponse = response as? HTTPURLResponse, !(200...299).contains(httpResponse.statusCode) {
-             throw DrapeError.serverError("Storage Upload Hatası: \(httpResponse.statusCode)")
+             throw DrapeError.serverError("Storage Upload Error: \(httpResponse.statusCode)")
         }
     }
     
-    nonisolated func startTryOnProcess(apiKey: String, storagePath: String, productUrl: String, description: String, category: DrapeCategory) async throws -> DrapeResult {
+    func startTryOnProcess(apiKey: String, storagePath: String, productUrl: String, description: String, category: DrapeCategory) async throws -> DrapeResult {
         let url = URL(string: "\(baseUrl)/startTryOn")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -165,7 +166,6 @@ private extension Drape {
         guard let httpResponse = response as? HTTPURLResponse else { throw DrapeError.networkError("No Response") }
         
         if !(200...299).contains(httpResponse.statusCode) {
-            // Hata ayıklama
             if let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
                let error = json["error"] as? [String: Any],
                let msg = error["message"] as? String {

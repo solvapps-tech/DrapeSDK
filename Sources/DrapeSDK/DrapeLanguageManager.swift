@@ -24,6 +24,13 @@ enum AppTextKey {
     case done
     case success
     case photoSaved
+    case chosenProduct
+    case yourPhoto
+    case productCategory
+    case resultSeenHere
+    case tryNow
+    case save
+    case share
 }
 
 class DrapeLanguageManager {
@@ -45,7 +52,14 @@ class DrapeLanguageManager {
             .error: "Error",
             .done: "OK",
             .success: "Success",
-            .photoSaved: "Photo saved to gallery."
+            .photoSaved: "Photo saved to gallery.",
+            .chosenProduct: "SELECTED PRODUCT",
+            .yourPhoto: "YOUR PHOTO",
+            .productCategory: "PRODUCT CATEGORY",
+            .resultSeenHere: "RESULT WILL APPEAR HERE...",
+            .tryNow: "Try Now",
+            .save: "Save",
+            .share: "Share"
         ],
         "tr": [
             .upperBodyText: "Üst Giyim",
@@ -63,8 +77,14 @@ class DrapeLanguageManager {
             .error: "Hata",
             .done: "Tamam",
             .success: "Başarılı",
-            .photoSaved: "Fotoğraf galeriye kaydedildi."
-            
+            .photoSaved: "Fotoğraf galeriye kaydedildi.",
+            .chosenProduct: "SEÇİLEN ÜRÜN",
+            .yourPhoto: "SENİN FOTOĞRAFIN",
+            .productCategory: "ÜRÜN KATEGORİSİ",
+            .resultSeenHere: "SONUÇ BURADA GÖRÜNECEK...",
+            .tryNow: "Hemen Dene",
+            .save: "Kaydet",
+            .share: "Paylaş"
         ]
     ]
     

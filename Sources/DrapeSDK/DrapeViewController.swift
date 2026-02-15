@@ -59,6 +59,9 @@ public class DrapeViewController: UIViewController {
         self.productImageView.layer.cornerRadius = 20
         self.originalImageView.layer.cornerRadius = 20
         self.resultImageView.layer.cornerRadius = 20
+        
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeTapped))
+        self.navigationItem.rightBarButtonItem = closeButton
     }
     
     func setTextValues() {
@@ -68,6 +71,10 @@ public class DrapeViewController: UIViewController {
         self.labelResult.text = DrapeLanguageManager.getText(for: .resultSeenHere)
         self.runButton.setTitle(DrapeLanguageManager.getText(for: .tryNow), for: .normal)
         self.buttonCategory.setTitle(self.selectedCategory.visibleName, for: .normal)
+    }
+    
+    @objc func closeTapped() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func selectImageTapped(_ sender: Any) {

@@ -73,6 +73,13 @@ public final class Drape {
         self.apiKey = apiKey
     }
     
+    public func startDrapeFor(productImageUrl: String?, controller: UIViewController) {
+        let drapeVC = DrapeViewController()
+        drapeVC.productImageUrl = productImageUrl
+        let nvc = UINavigationController(rootViewController: drapeVC)
+        controller.present(nvc, animated: true)
+    }
+    
     public func tryOn(
         humanImage: UIImage,
         productUrl: String,

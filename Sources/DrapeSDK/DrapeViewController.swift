@@ -44,6 +44,7 @@ public class DrapeViewController: UIViewController {
         Task {
             do {
                 await self.productImageView.loadImage(from: self.productImageUrl)
+                await self.bgImageView.loadImage(from: self.productImageUrl)
             }
         }
     }

@@ -11,8 +11,9 @@ import PhotosUI
 public class DrapeResultViewController: UIViewController {
     
     @IBOutlet weak var imageResult: UIImageView!
-    @IBOutlet weak var buttonSave: UIButton!
     @IBOutlet weak var buttonShare: UIButton!
+    @IBOutlet weak var viewShareContainer: UIView!
+    @IBOutlet weak var viewCloseContainer: UIView!
     
     public var resultImageUrl: String?
     
@@ -31,41 +32,17 @@ public class DrapeResultViewController: UIViewController {
                 await self.imageResult.loadImage(from: resultImageUrl)
             }
         }
-        self.imageResult.layer.cornerRadius = 20
-        self.buttonSave.setTitle(DrapeLanguageManager.getText(for: .save), for: .normal)
-        self.buttonShare.setTitle(DrapeLanguageManager.getText(for: .share), for: .normal)
+        self.viewShareContainer.layer.cornerRadius = 25
+        self.viewCloseContainer.layer.cornerRadius = 25
     }
     
     @IBAction func closeTapped() {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func saveTapped() {
-        guard let image = self.imageResult.image else { return }
-        saveImageToGallery(image)
-    }
-    
     @IBAction func shareTapped() {
         guard let image = self.imageResult.image else { return }
         self.openShareFor(activityItems: [image])
-    }
-    
-    func saveImageToGallery(_ image: UIImage) {
-        PHPhotoLibrary.shared().performChanges {
-            PHAssetChangeRequest.creationRequestForAsset(from: image)
-        } completionHandler: { success, error in
-            DispatchQueue.main.async {
-                if success {
-                    let alert = UIAlertController(title: DrapeLanguageManager.getText(for: .success),
-                                                  message: DrapeLanguageManager.getText(for: .photoSaved),
-                                                  preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: DrapeLanguageManager.getText(for: .done), style: .default))
-                    self.present(alert, animated: true)
-                } else {
-                    debugPrint("Error:", error?.localizedDescription ?? "")
-                }
-            }
-        }
     }
     
     func openShareFor(activityItems: [Any]) {

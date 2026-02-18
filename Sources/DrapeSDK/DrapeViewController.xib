@@ -142,7 +142,7 @@
                         <constraint firstAttribute="width" constant="160" id="Ihe-tg-lTa"/>
                     </constraints>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="filled" image="wand.and.sparkles" catalog="system" title="GENERATE" imagePadding="5">
+                    <buttonConfiguration key="configuration" style="filled" image="sparkles" catalog="system" title="GENERATE" imagePadding="5">
                         <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="16"/>
                     </buttonConfiguration>
                     <connections>
@@ -182,7 +182,7 @@
     </objects>
     <resources>
         <image name="camera.fill" catalog="system" width="128" height="93"/>
-        <image name="wand.and.sparkles" catalog="system" width="128" height="112"/>
+        <image name="sparkles" catalog="system" width="115" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

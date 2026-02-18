@@ -36,13 +36,15 @@
                     </constraints>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal">
-                        <imageReference key="image" image="xmark" catalog="system" symbolScale="large"/>
-                    </state>
                     <connections>
                         <action selector="closeTapped" destination="-1" eventType="touchUpInside" id="1xm-gP-LZG"/>
                     </connections>
                 </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ur4-mz-UUV">
+                    <rect key="frame" x="313" y="147.66666666666666" width="50" height="50.666666666666657"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <imageReference key="image" image="xmark" catalog="system" symbolScale="large"/>
+                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pfb-Lr-cmc">
                     <rect key="frame" x="171.66666666666666" y="704" width="50" height="50"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -52,13 +54,15 @@
                     </constraints>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal">
-                        <imageReference key="image" image="square.and.arrow.up" catalog="system" symbolScale="large"/>
-                    </state>
                     <connections>
                         <action selector="shareTapped" destination="-1" eventType="touchUpInside" id="vD0-KN-nqi"/>
                     </connections>
                 </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.arrow.up" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="SCO-h8-eNG">
+                    <rect key="frame" x="171.66666666666666" y="698" width="50" height="59.333333333333371"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -66,11 +70,19 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6X2-rm-Ynw" secondAttribute="trailing" constant="30" id="141-0n-tjV"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="pfb-Lr-cmc" secondAttribute="bottom" constant="30" id="3fF-rf-fPx"/>
                 <constraint firstItem="nt3-lH-eP6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="5ff-zc-5z0"/>
+                <constraint firstItem="SCO-h8-eNG" firstAttribute="centerY" secondItem="pfb-Lr-cmc" secondAttribute="centerY" id="D9L-KO-QF8"/>
+                <constraint firstItem="ur4-mz-UUV" firstAttribute="centerX" secondItem="6X2-rm-Ynw" secondAttribute="centerX" id="DRS-s1-h9H"/>
+                <constraint firstItem="SCO-h8-eNG" firstAttribute="centerX" secondItem="pfb-Lr-cmc" secondAttribute="centerX" id="EFb-ZS-RlA"/>
                 <constraint firstItem="nt3-lH-eP6" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="G5u-uX-kkI"/>
                 <constraint firstItem="nt3-lH-eP6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Jgt-hv-szh"/>
+                <constraint firstItem="SCO-h8-eNG" firstAttribute="height" secondItem="pfb-Lr-cmc" secondAttribute="height" id="ORC-jI-7cE"/>
                 <constraint firstAttribute="bottom" secondItem="nt3-lH-eP6" secondAttribute="bottom" id="SUK-3G-imt"/>
                 <constraint firstItem="pfb-Lr-cmc" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ZZd-cM-EXy"/>
+                <constraint firstItem="ur4-mz-UUV" firstAttribute="centerY" secondItem="6X2-rm-Ynw" secondAttribute="centerY" id="hXH-pX-EhL"/>
                 <constraint firstItem="6X2-rm-Ynw" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="iLM-rj-gLv"/>
+                <constraint firstItem="ur4-mz-UUV" firstAttribute="height" secondItem="6X2-rm-Ynw" secondAttribute="height" id="lJi-92-ezl"/>
+                <constraint firstItem="ur4-mz-UUV" firstAttribute="width" secondItem="6X2-rm-Ynw" secondAttribute="width" id="qNa-k5-eIy"/>
+                <constraint firstItem="SCO-h8-eNG" firstAttribute="width" secondItem="pfb-Lr-cmc" secondAttribute="width" id="xdq-01-YJl"/>
             </constraints>
             <point key="canvasLocation" x="-37.404580152671755" y="136.61971830985917"/>
         </view>

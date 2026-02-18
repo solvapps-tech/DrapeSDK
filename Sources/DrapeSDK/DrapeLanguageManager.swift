@@ -54,10 +54,10 @@ class DrapeLanguageManager {
             .success: "Success",
             .photoSaved: "Photo saved to gallery.",
             .chosenProduct: "SELECTED PRODUCT",
-            .yourPhoto: "YOUR PHOTO",
+            .yourPhoto: "Upload your photo to try it on",
             .productCategory: "PRODUCT CATEGORY",
             .resultSeenHere: "RESULT WILL APPEAR HERE...",
-            .tryNow: "Try Now",
+            .tryNow: "GENERATE",
             .save: "Save",
             .share: "Share"
         ],
@@ -79,10 +79,10 @@ class DrapeLanguageManager {
             .success: "Başarılı",
             .photoSaved: "Fotoğraf galeriye kaydedildi.",
             .chosenProduct: "SEÇİLEN ÜRÜN",
-            .yourPhoto: "SENİN FOTOĞRAFIN",
+            .yourPhoto: "Denemek için fotoğrafınızı yükleyin",
             .productCategory: "ÜRÜN KATEGORİSİ",
             .resultSeenHere: "SONUÇ BURADA GÖRÜNECEK...",
-            .tryNow: "Hemen Dene",
+            .tryNow: "OLUŞTUR",
             .save: "Kaydet",
             .share: "Paylaş"
         ]

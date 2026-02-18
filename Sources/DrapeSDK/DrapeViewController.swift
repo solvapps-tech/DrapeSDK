@@ -12,14 +12,12 @@ public class DrapeViewController: UIViewController {
     
     @IBOutlet weak var viewProductContainer: UIView!
     @IBOutlet weak var viewOriginalContainer: UIView!
-    @IBOutlet weak var viewResultContainer: UIView!
-    @IBOutlet weak var labelProduct: UILabel!
+    @IBOutlet weak var viewCameraContainer: UIView!
     @IBOutlet weak var labelOriginal: UILabel!
-    @IBOutlet weak var labelResult: UILabel!
     @IBOutlet weak var labelCategory: UILabel!
+    @IBOutlet weak var bgImageView: UIImageView!
     @IBOutlet weak var productImageView: UIImageView!
     @IBOutlet weak var originalImageView: UIImageView!
-    @IBOutlet weak var resultImageView: UIImageView!
     @IBOutlet weak var runButton: UIButton!
     @IBOutlet weak var buttonCategory: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -43,34 +41,37 @@ public class DrapeViewController: UIViewController {
     }
     
     func loadProductImage() {
-        guard let productImageUrl = self.productImageUrl else { return }
         Task {
             do {
-                await loadImage(from: productImageUrl, forImageView: self.productImageView)
+                await self.productImageView.loadImage(from: self.productImageUrl)
             }
         }
     }
     
     func setViewProperties() {
-        self.viewProductContainer.layer.cornerRadius = 20
-        self.viewOriginalContainer.layer.cornerRadius = 20
-        self.viewResultContainer.layer.cornerRadius = 20
+        self.addShadowTo(view: self.viewProductContainer)
+        self.addShadowTo(view: self.viewOriginalContainer)
+        self.viewCameraContainer.layer.cornerRadius = 50
         
         self.productImageView.layer.cornerRadius = 20
         self.originalImageView.layer.cornerRadius = 20
-        self.resultImageView.layer.cornerRadius = 20
         
         let closeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeTapped))
         self.navigationItem.rightBarButtonItem = closeButton
     }
     
     func setTextValues() {
-        self.labelProduct.text = DrapeLanguageManager.getText(for: .chosenProduct)
         self.labelOriginal.text = DrapeLanguageManager.getText(for: .yourPhoto)
         self.labelCategory.text = DrapeLanguageManager.getText(for: .productCategory)
-        self.labelResult.text = DrapeLanguageManager.getText(for: .resultSeenHere)
         self.runButton.setTitle(DrapeLanguageManager.getText(for: .tryNow), for: .normal)
         self.buttonCategory.setTitle(self.selectedCategory.visibleName, for: .normal)
+    }
+    
+    func addShadowTo(view: UIView) {
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 4)
+        view.layer.shadowOpacity = 0.2
+        view.layer.shadowRadius = 8
     }
     
     @objc func closeTapped() {
@@ -127,8 +128,6 @@ public class DrapeViewController: UIViewController {
     }
     
     @IBAction func runDrapeTapped(_ sender: Any) {
-        resultImageView.image = nil
-        labelResult.isHidden = false
         guard let productImage = productImageUrl else {
             self.showError(DrapeLanguageManager.getText(for: .choseProductPhoto))
             return
@@ -153,8 +152,7 @@ public class DrapeViewController: UIViewController {
                 debugPrint("✅ Success! Session ID: \(result.sessionId)")
                 debugPrint("🖼️ Generated image url: \(result.imageUrl)")
                 
-                labelResult.isHidden = true
-                await loadImage(from: result.imageUrl, forImageView: self.resultImageView)
+                self.openResultFor(resultImageUrl: result.imageUrl)
                 
             } catch {
                 debugPrint("🛑 ERROR: \(error.localizedDescription)")
@@ -166,19 +164,10 @@ public class DrapeViewController: UIViewController {
         }
     }
     
-    @IBAction func resultImageTapped() {
-        guard let resultImage = resultImageView.image else { return }
+    func openResultFor(resultImageUrl: String?) {
         let controller = DrapeResultViewController()
-        controller.resultImage = resultImage
+        controller.resultImageUrl = resultImageUrl
         self.present(controller, animated: true)
-    }
-    
-    func loadImage(from urlString: String, forImageView: UIImageView) async {
-        guard let url = URL(string: urlString),
-              let (data, _) = try? await URLSession.shared.data(from: url),
-              let image = UIImage(data: data) else { return }
-        
-        forImageView.image = image
     }
     
     func startLoading(_ isLoading: Bool) {

@@ -14,7 +14,7 @@ public class DrapeResultViewController: UIViewController {
     @IBOutlet weak var buttonSave: UIButton!
     @IBOutlet weak var buttonShare: UIButton!
     
-    public var resultImage: UIImage?
+    public var resultImageUrl: String?
     
     public init() {
         super.init(nibName: "DrapeResultViewController", bundle: Bundle.module)
@@ -26,7 +26,11 @@ public class DrapeResultViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        self.imageResult.image = resultImage
+        Task {
+            do {
+                await self.imageResult.loadImage(from: resultImageUrl)
+            }
+        }
         self.imageResult.layer.cornerRadius = 20
         self.buttonSave.setTitle(DrapeLanguageManager.getText(for: .save), for: .normal)
         self.buttonShare.setTitle(DrapeLanguageManager.getText(for: .share), for: .normal)
@@ -37,12 +41,12 @@ public class DrapeResultViewController: UIViewController {
     }
     
     @IBAction func saveTapped() {
-        guard let image = resultImage else { return }
+        guard let image = self.imageResult.image else { return }
         saveImageToGallery(image)
     }
     
     @IBAction func shareTapped() {
-        guard let image = resultImage else { return }
+        guard let image = self.imageResult.image else { return }
         self.openShareFor(activityItems: [image])
     }
     

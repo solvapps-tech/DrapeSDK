@@ -36,6 +36,7 @@ extension UIView {
         let vibrancyView = UIVisualEffectView(effect: viberancyEffect)
         vibrancyView.frame = glassView.contentView.bounds
         glassView.contentView.addSubview(vibrancyView)
+        glassView.isUserInteractionEnabled = false
         self.insertSubview(glassView, at: 0)
     }
 }

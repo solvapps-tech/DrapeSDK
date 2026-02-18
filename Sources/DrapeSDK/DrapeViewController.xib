@@ -116,8 +116,8 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ÜRÜN KATEGORİSİ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="IWv-ea-81C">
-                    <rect key="frame" x="255.66666666666663" y="640.33333333333337" width="75" height="9.6666666666666288"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                    <rect key="frame" x="255.00000000000003" y="640.33333333333337" width="76.333333333333343" height="9.6666666666666288"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="8"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -126,8 +126,9 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="32" id="Y2E-Jy-GXe"/>
                     </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="tinted"/>
+                    <buttonConfiguration key="configuration" style="gray"/>
                     <connections>
                         <action selector="categoryTapped:" destination="-1" eventType="touchUpInside" id="MBq-8q-4W7"/>
                     </connections>

@@ -22,3 +22,19 @@ extension UIImageView {
         self.image = image
     }
 }
+
+extension UIView {
+    func addGlassEffect() {
+        let glassEffect = UIBlurEffect(style: .systemThinMaterial)
+        let glassView = UIVisualEffectView(effect: glassEffect)
+        glassView.frame = self.bounds
+        glassView.layer.cornerRadius = self.bounds.height / 2
+        glassView.clipsToBounds = true
+        glassView.layer.borderWidth = 0.5
+        glassView.layer.borderColor = UIColor.white.withAlphaComponent(0.4).cgColor
+        let viberancyEffect = UIVibrancyEffect(blurEffect: glassEffect, style: .label)
+        let vibrancyView = UIVisualEffectView(effect: viberancyEffect)
+        glassView.contentView.addSubview(vibrancyView)
+        self.insertSubview(glassView, at: 0)
+    }
+}

@@ -12,11 +12,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DrapeResultViewController" customModule="DrapeDemo" customModuleProvider="target">
             <connections>
+                <outlet property="buttonClose" destination="6X2-rm-Ynw" id="PPw-Ow-AeK"/>
                 <outlet property="buttonShare" destination="pfb-Lr-cmc" id="rwC-jG-LhP"/>
                 <outlet property="imageResult" destination="nt3-lH-eP6" id="t1b-91-dWR"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="viewCloseContainer" destination="Oga-Ah-oMu" id="XFc-fY-wPM"/>
-                <outlet property="viewShareContainer" destination="vo0-qW-Dd8" id="MDB-8y-kGK"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -28,91 +27,50 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <color key="backgroundColor" systemColor="systemGray6Color"/>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oga-Ah-oMu">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6X2-rm-Ynw">
                     <rect key="frame" x="313" y="148" width="50" height="50"/>
-                    <subviews>
-                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uRK-Y1-Yq8">
-                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="3vB-lY-CfG">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </view>
-                            <blurEffect style="systemThinMaterial"/>
-                        </visualEffectView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6X2-rm-Ynw">
-                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal">
-                                <imageReference key="image" image="xmark" catalog="system" symbolScale="large"/>
-                            </state>
-                            <connections>
-                                <action selector="closeTapped" destination="-1" eventType="touchUpInside" id="1xm-gP-LZG"/>
-                            </connections>
-                        </button>
-                    </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="6X2-rm-Ynw" firstAttribute="top" secondItem="Oga-Ah-oMu" secondAttribute="top" id="2qK-lT-4mP"/>
-                        <constraint firstItem="uRK-Y1-Yq8" firstAttribute="top" secondItem="Oga-Ah-oMu" secondAttribute="top" id="CXc-9c-b9M"/>
-                        <constraint firstAttribute="width" constant="50" id="P1t-52-GeQ"/>
-                        <constraint firstAttribute="bottom" secondItem="6X2-rm-Ynw" secondAttribute="bottom" id="PsL-Uq-DGa"/>
-                        <constraint firstAttribute="trailing" secondItem="6X2-rm-Ynw" secondAttribute="trailing" id="aHN-5f-hSH"/>
-                        <constraint firstItem="6X2-rm-Ynw" firstAttribute="leading" secondItem="Oga-Ah-oMu" secondAttribute="leading" id="oJg-kd-rjM"/>
-                        <constraint firstAttribute="trailing" secondItem="uRK-Y1-Yq8" secondAttribute="trailing" id="qFm-jd-ira"/>
-                        <constraint firstAttribute="height" constant="50" id="sZ5-8e-KmJ"/>
-                        <constraint firstAttribute="bottom" secondItem="uRK-Y1-Yq8" secondAttribute="bottom" id="x1Y-FJ-W8f"/>
-                        <constraint firstItem="uRK-Y1-Yq8" firstAttribute="leading" secondItem="Oga-Ah-oMu" secondAttribute="leading" id="xNv-Pb-a2a"/>
+                        <constraint firstAttribute="width" constant="50" id="MRU-vJ-7LD"/>
+                        <constraint firstAttribute="height" constant="50" id="V8r-xw-4JE"/>
                     </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vo0-qW-Dd8">
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal">
+                        <imageReference key="image" image="xmark" catalog="system" symbolScale="large"/>
+                    </state>
+                    <connections>
+                        <action selector="closeTapped" destination="-1" eventType="touchUpInside" id="1xm-gP-LZG"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pfb-Lr-cmc">
                     <rect key="frame" x="171.66666666666666" y="704" width="50" height="50"/>
-                    <subviews>
-                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bJw-tE-tvG">
-                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="dXV-hL-QjS">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </view>
-                            <blurEffect style="systemThinMaterial"/>
-                        </visualEffectView>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pfb-Lr-cmc">
-                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal">
-                                <imageReference key="image" image="square.and.arrow.up" catalog="system" symbolScale="large"/>
-                            </state>
-                            <connections>
-                                <action selector="shareTapped" destination="-1" eventType="touchUpInside" id="vD0-KN-nqi"/>
-                            </connections>
-                        </button>
-                    </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="bJw-tE-tvG" firstAttribute="leading" secondItem="vo0-qW-Dd8" secondAttribute="leading" id="3ij-oX-b7b"/>
-                        <constraint firstAttribute="trailing" secondItem="bJw-tE-tvG" secondAttribute="trailing" id="H6F-S6-ryZ"/>
-                        <constraint firstAttribute="height" constant="50" id="JBr-QZ-QL6"/>
-                        <constraint firstAttribute="bottom" secondItem="bJw-tE-tvG" secondAttribute="bottom" id="P8W-8R-A5K"/>
-                        <constraint firstAttribute="width" constant="50" id="UxS-Ww-6ex"/>
-                        <constraint firstItem="bJw-tE-tvG" firstAttribute="top" secondItem="vo0-qW-Dd8" secondAttribute="top" id="UzM-Tj-BOd"/>
+                        <constraint firstAttribute="width" constant="50" id="J6B-vn-yre"/>
+                        <constraint firstAttribute="height" constant="50" id="X0L-iF-Rrh"/>
                     </constraints>
-                </view>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal">
+                        <imageReference key="image" image="square.and.arrow.up" catalog="system" symbolScale="large"/>
+                    </state>
+                    <connections>
+                        <action selector="shareTapped" destination="-1" eventType="touchUpInside" id="vD0-KN-nqi"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6X2-rm-Ynw" secondAttribute="trailing" constant="30" id="141-0n-tjV"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="pfb-Lr-cmc" secondAttribute="bottom" constant="30" id="3fF-rf-fPx"/>
                 <constraint firstItem="nt3-lH-eP6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="5ff-zc-5z0"/>
-                <constraint firstItem="Oga-Ah-oMu" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="DD5-7c-4zf"/>
                 <constraint firstItem="nt3-lH-eP6" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="G5u-uX-kkI"/>
                 <constraint firstItem="nt3-lH-eP6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Jgt-hv-szh"/>
                 <constraint firstAttribute="bottom" secondItem="nt3-lH-eP6" secondAttribute="bottom" id="SUK-3G-imt"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Oga-Ah-oMu" secondAttribute="trailing" constant="30" id="X9r-Tl-21H"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="vo0-qW-Dd8" secondAttribute="bottom" constant="30" id="ZiV-Zl-oei"/>
-                <constraint firstItem="vo0-qW-Dd8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="lh2-1W-6E9"/>
+                <constraint firstItem="pfb-Lr-cmc" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ZZd-cM-EXy"/>
+                <constraint firstItem="6X2-rm-Ynw" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="iLM-rj-gLv"/>
             </constraints>
             <point key="canvasLocation" x="-37.404580152671755" y="136.61971830985917"/>
         </view>

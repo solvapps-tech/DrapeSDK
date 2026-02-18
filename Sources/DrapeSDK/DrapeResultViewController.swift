@@ -12,8 +12,7 @@ public class DrapeResultViewController: UIViewController {
     
     @IBOutlet weak var imageResult: UIImageView!
     @IBOutlet weak var buttonShare: UIButton!
-    @IBOutlet weak var viewShareContainer: UIView!
-    @IBOutlet weak var viewCloseContainer: UIView!
+    @IBOutlet weak var buttonClose: UIButton!
     
     public var resultImageUrl: String?
     
@@ -32,8 +31,8 @@ public class DrapeResultViewController: UIViewController {
                 await self.imageResult.loadImage(from: resultImageUrl)
             }
         }
-        self.viewShareContainer.layer.cornerRadius = 25
-        self.viewCloseContainer.layer.cornerRadius = 25
+        buttonClose.addGlassEffect()
+        buttonShare.addGlassEffect()
     }
     
     @IBAction func closeTapped() {

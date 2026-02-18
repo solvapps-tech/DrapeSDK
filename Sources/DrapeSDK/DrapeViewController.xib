@@ -126,9 +126,10 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="32" id="Y2E-Jy-GXe"/>
                     </constraints>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="gray"/>
+                    <buttonConfiguration key="configuration" style="gray">
+                        <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </buttonConfiguration>
                     <connections>
                         <action selector="categoryTapped:" destination="-1" eventType="touchUpInside" id="MBq-8q-4W7"/>
                     </connections>

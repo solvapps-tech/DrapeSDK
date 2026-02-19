@@ -151,13 +151,11 @@ public class DrapeViewController: UIViewController {
                 )
                 
                 debugPrint("✅ Success! Session ID: \(result.sessionId)")
-                debugPrint("🖼️ Generated image url: \(result.imageUrl)")
                 
                 self.openResultFor(resultImageUrl: result.imageUrl)
                 
             } catch {
                 debugPrint("🛑 ERROR: \(error.localizedDescription)")
-                debugPrint("🛑 RAW ERROR: \(error)")
                 showError(error.localizedDescription)
             }
             

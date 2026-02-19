@@ -14,12 +14,10 @@ public class DrapeViewController: UIViewController {
     @IBOutlet weak var viewOriginalContainer: UIView!
     @IBOutlet weak var viewCameraContainer: UIView!
     @IBOutlet weak var labelOriginal: UILabel!
-    @IBOutlet weak var labelCategory: UILabel!
     @IBOutlet weak var bgImageView: UIImageView!
     @IBOutlet weak var productImageView: UIImageView!
     @IBOutlet weak var originalImageView: UIImageView!
     @IBOutlet weak var runButton: UIButton!
-    @IBOutlet weak var buttonCategory: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     public var productImageUrl: String?
@@ -63,9 +61,7 @@ public class DrapeViewController: UIViewController {
     
     func setTextValues() {
         self.labelOriginal.text = DrapeLanguageManager.getText(for: .yourPhoto)
-        self.labelCategory.text = DrapeLanguageManager.getText(for: .productCategory)
         self.runButton.setTitle(DrapeLanguageManager.getText(for: .tryNow), for: .normal)
-        self.buttonCategory.setTitle(self.selectedCategory.visibleName, for: .normal)
     }
     
     func addShadowTo(view: UIView) {
@@ -104,30 +100,6 @@ public class DrapeViewController: UIViewController {
         present(alertController, animated: true)
     }
     
-    @IBAction func categoryTapped(_ sender: Any) {
-        let upperBodyAction = UIAlertAction(title: DrapeCategory.upperBody.visibleName, style: .default) { _ in
-            self.selectedCategory = .upperBody
-            self.buttonCategory.setTitle(DrapeCategory.upperBody.visibleName, for: .normal)
-        }
-        let lowerBodyAction = UIAlertAction(title: DrapeCategory.lowerBody.visibleName, style: .default) { _ in
-            self.selectedCategory = .lowerBody
-            self.buttonCategory.setTitle(DrapeCategory.lowerBody.visibleName, for: .normal)
-        }
-        let dressAction = UIAlertAction(title: DrapeCategory.dresses.visibleName, style: .default) { _ in
-            self.selectedCategory = .dresses
-            self.buttonCategory.setTitle(DrapeCategory.dresses.visibleName, for: .normal)
-        }
-        
-        let alertController = UIAlertController(title: DrapeLanguageManager.getText(for: .choseCategory),
-                                                message: DrapeLanguageManager.getText(for: .categorySelectText),
-                                                preferredStyle: .actionSheet)
-        alertController.addAction(upperBodyAction)
-        alertController.addAction(lowerBodyAction)
-        alertController.addAction(dressAction)
-        
-        present(alertController, animated: true)
-    }
-    
     @IBAction func runDrapeTapped(_ sender: Any) {
         guard let productImage = productImageUrl else {
             self.showError(DrapeLanguageManager.getText(for: .choseProductPhoto))
@@ -146,8 +118,7 @@ public class DrapeViewController: UIViewController {
                 
                 let result = try await Drape.shared.tryOn(
                     humanImage: humanImage,
-                    productUrl: productImage,
-                    category: self.selectedCategory
+                    productUrl: productImage
                 )
                 
                 debugPrint("✅ Success! Session ID: \(result.sessionId)")

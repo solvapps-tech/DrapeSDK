@@ -82,8 +82,7 @@ public final class Drape {
     
     public func tryOn(
         humanImage: UIImage,
-        productUrl: String,
-        category: DrapeCategory = .upperBody
+        productUrl: String
     ) async throws -> DrapeResult {
         
         guard let currentKey = apiKey, !currentKey.isEmpty else {
@@ -99,10 +98,7 @@ public final class Drape {
         let result = try await startTryOnProcess(
             apiKey: currentKey,
             storagePath: uploadInfo.storagePath,
-            productUrl: productUrl,
-            description: category.rawValue,
-            category: category
-        )
+            productUrl: productUrl)
         
         return result
     }
@@ -150,7 +146,7 @@ private extension Drape {
         }
     }
     
-    func startTryOnProcess(apiKey: String, storagePath: String, productUrl: String, description: String, category: DrapeCategory) async throws -> DrapeResult {
+    func startTryOnProcess(apiKey: String, storagePath: String, productUrl: String) async throws -> DrapeResult {
         let url = URL(string: "\(baseUrl)/startTryOn")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -161,9 +157,7 @@ private extension Drape {
         let body: [String: Any] = [
             "data": [
                 "storagePath": storagePath,
-                "garmentUrl": productUrl,
-                "garmentDesc": description,
-                "category": category.rawValue
+                "garmentUrl": productUrl
             ]
         ]
         request.httpBody = try? JSONSerialization.data(withJSONObject: body)
